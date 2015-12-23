@@ -1,0 +1,282 @@
+Copyright (c) 2009 PayPal Inc. All Rights Reserved
+
+PayPal Payflow Gateway
+PAYMENT SERVICE RELEASE NOTES
+-----------------------------
+
+***********************************************************************
+*   This SDK is designed to work with both Payflow Gateway accounts   * 
+*   (Payflow Pro) and Website Payments Pro accounts, including UK.    *
+***********************************************************************
+
+*** Upgrading from a Release Candidate ***
+If you are upgrading from a Release Candidate, v4.0.0.9 or earlier, please 
+review the notes at the bottom of this document.
+
+*** How to use with Visual Studio 2005/2008 and .NET Framework 2.0/3.x ***
+This package is designed to work with Visual Studio 2003 and .NET Framework 1.1 as the enclosed samples use the 1.1 framework by default.
+ 
+To use this SDK with .NET Framework 2.0 or 3.x (Visual Studio 2005 or 2008) you will need to replace the payflow_dotNET.dll within the projects bin directory with the payflow_dotNET_2.0.dll (renaming it to payflow_dotNET.dll) from the root directory of the SDK.
+ 
+Remember: Rename the file from payflow_dotNET_2.0.dll to payflow_dotNET.dll replacing the original v1.1 one.
+ 
+Also, you will need to recompile the eStoreFront or SampleStore examples if you change the DLL from 1.1 to 2.0. 
+ 
+*** x64 Systems ***
+The payflow_dotNET_2.0.dll is the only DLL that is compiled for x64 systems.  See above.
+
+*** Documentation ***
+In addition to these Release Notes, refer to the following guides:
+
+	1. For the API documentation, refer to "Payflow SDK for .NET API Documentation.chm" in the “docs” folder.
+	2. The "Payflow SDK for .NET Developer's Guide" included in this package (Payflow SDK .NET Guide).
+	3. The Payflow Pro Developer’s Guide (US, AU) or Websites Payments Pro Payflow Edition Developer's Guide (UK)
+	   available from PayPal Manager at https://manager.paypal.com or from the Integration Center under 
+	   Payflow Pro/Websites Payments Pro (UK) at https://www.paypal.com/IntegrationCenter/ic_home.html.
+
+*** Using the Sample Store or eStoreFront web examples ***
+Refer to either the ReadMeSampleStore.txt or ReadMeeStoreFront.txt files in the “docs” folder.
+
+*** Debug Logging ***
+For setting up logging of the SDK, refer to ReadMe.txt in the “docs” folder.
+
+*** Common Issues ***
+
+	1. Result code -1: Host URL is incorrect or firewall, proxy or network issue.
+	2. Result code 1: Usually caused by Invalid login information (see #3) or ip restrictions on the account.
+	3. Result code 26: Verify USER, VENDOR, PARTNER and PASSWORD. Remember, USER and VENDOR are both the merchant
+	   login ID unless a Payflow Pro USER was created.  All fields are case-sensitive.
+	4. Parser Error Message: Could not load type 'eStoreFrontVB.Global'.: You will receive this error
+	   (or something similar) if you change the DLL from 1.1 to 2.0 in the eStoreFront or SampleStore 
+	   examples and do not recompile your application.
+	5. RegAsm error: Unable to locate input assembly: 'Payflow_dotNET.dll':  This is due to using the 1.1 version
+	   of the DLL on a 64-bit OS.  Since the 1.1 DLL is for a 32-bit OS you need to copy the payflow_dotNET.dll into
+	   Windows\SysWOW64 not Windows\System32 for 32-bit compatibility.  Also, can be due to not renaming the file
+	   Payflow_dotNET_1.1.dll to Payflow_dotNET.dll.
+	6. Receive a result code -104, Unexpected transaction state Error while parsing the xml request.  This is usually
+	   due to an ampersand (&) in the XML request.  If you want to use an ampersand; such as, Bill & Ted's Auto, you 
+	   need to send the data using "&amp;" to represent the ampersand.
+
+	   For example:  <NameOnCard>Bill &amp; Ted's Auto</NameOnCard>
+
+	  
+*** Where To Begin ***
+After installation of the SDK, the best place to start is to review the DoSaleComplete Console Samples which are
+located under either SamplesVB or SamplesCS.  The console sample is highly commented to give you the basic idea of
+how to use this SDK in your application.  The code can be used in a web application too.
+
+For Express Checkout, use the eStoreFront web sample and for basic testing purposes you can use the console Samples,
+DOSetEC, DOGetEC and DODoEC.  Again, these are for testing purposes only and to give you an insight into how to 
+perform the calls; however, you would not use them in your application.  See the eStoreFront example for one way
+on how you might integrate Express Checkout with your application.
+
+-------------------------------
+REVISION HISTORY
+-------------------------------
+VERSION: 4.33
+UPDATED: 09/21/2009
+------------------------------------------------------
+NEW FEATURES/CHANGES/UPDATES
+-------------------------------------------------------
+-ADDED:		Added missing Line Item parameter for NAME (L_NAME) for Express Checkout.
+-FIXED:		Fixed issue where error 407 would be returned due to Proxy settings.
+-ADDED:		Added the type library, payflow_dotNET.tlb, see http://msdn.microsoft.com/en-us/library/aa366757(VS.85).aspx
+		
+		A type library (.tlb) is a binary file that stores information about a COM or DCOM object's properties and
+		methods in a form that is accessible to other applications at runtime. Using a type library, an application
+		or browser can determine which interfaces an object supports, and invoke an object's interface methods. 
+		This can occur even if the object and client applications were written in different programming languages. 
+		The COM/DCOM run-time environment can also use a type library to provide automatic cross-apartment, 
+		cross-process, and cross-machine marshaling for interfaces described in type libraries.
+
+-------------------------------
+VERSION: 4.32
+UPDATED: 07/01/2009
+------------------------------------------------------
+NEW FEATURES/CHANGES/UPDATES
+-------------------------------------------------------
+-FIXED:		ExpressCheckoutUpdateResponse now returns missing parameters, BA_STATUS and BA_DESC.  Updated DOUpdateEC samples 
+		to reflect returned items in response string.
+-ADDED:		Added OrderTransaction object for Express Checkout.
+
+-------------------------------
+VERSION: 4.31
+UPDATED: 08/30/2008
+------------------------------------------------------
+NEW FEATURES/CHANGES/UPDATES
+-------------------------------------------------------
+-ADDED:		Objects for American Express CAPN.  However, Airline specific fields have not been added.  If needed, use the
+		ExtendData object.
+-FIXED:		Fixed issue where large recurring profile history responses caused the application to hang or return invalid data.
+-FIXED:		DORecurringINquriy (vb/cs) sample to display the TRANSSTATE parameter correctly.
+
+-------------------------------
+VERSION: 4.30
+UPDATED: 03/12/2008
+------------------------------------------------------
+NEW FEATURES/CHANGES/UPDATES
+-------------------------------------------------------
+- FIXED: 	 Updated Samples to use the new host urls of payflowpro.paypal.com (live) and pilot-payflowpro.paypal.com (test).
+
+-------------------------------
+VERSION: 4.23
+UPDATED: 02/04/2008
+------------------------------------------------------
+NEW FEATURES/CHANGES/UPDATES
+-------------------------------------------------------
+- FIXED:	RESULT=-104&RESPMSG=Unexpected transaction state.  Index was outside the bounds of the array while processing 
+		fraud responses.
+- UPDATED: 	The DoInquiry Samples now explains how to use CustRef instead of PNREF.
+- UPDATED: 	Updated the eStoreFront samples to include example of performing a Delay Capture after the DO function.  
+- ADDED:	Parameters for Express Checkout Reference Transactions.  NOTE: Your account must be vetted to 
+           	process Reference Transactions using Express Checkout.  See the DOSetEC Console Sample for more information.
+- ADDED:	New Express Checkout Console Samples showing both normal Express Checkout function (without web flow,
+           	which is required in production) and Reference Transactions using Express Checkout.
+- CHANGED: 	The PAYER object in ECGetResponse is now called Email which is the correct parameter name and brings it 
+		in-line with the other objects.
+-------------------------------
+
+VERSION: 4.22
+UPDATED: 10/25/2007
+------------------------------------------------------
+NEW FEATURES/CHANGES/UPDATES
+-------------------------------------------------------
+- FIXED:   Convert amount into US format, ie DDDD.CC or DDDDD.  Other Regions like Germany would use a comma for 
+           the decimal separator causing a Result Code 4, Invalid Amount.  For example, 25.25 would be 25,25.00.  Now
+           all amounts are set to US format when sent for processing.
+- FIXED:   Added missing parameter for SHIPTOSTREET2 for Express Checkout Get Response.
+- CHANGED: Both 1.1 and 2.0 versions of the payflow_dotNET.dll have been compiled with AllowPartiallyTrustedCallers
+           and CLSCompliant set to true.	
+- CHANGED: Removed the path "/transaction" from the samples since it is no longer required as of October 15, 2007.
+- FIXED:   Package will now install on systems with only Framework 1.1 available.  Originally would 
+           only install on systems with Framework 2.0 installed.
+- ADDED:   AMEXPOSDATA parameter to Response object (American Express CAPN transactions only).
+-------------------------------
+
+VERSION: 4.21
+UPDATED: 08/24/07
+------------------------------------------------------
+NEW FEATURES/CHANGES/UPDATES
+-------------------------------------------------------
+Changed:
+- BUG:     Fixed issue with COUNTRY not being sent correctly while doing a Recurring Transaction.
+- FIXED:   System.Security.SecurityException: That assembly does not allow partially trusted callers while using
+           the Payflow_dotNET.dll for Framework 2.0.  v4.21 has been compiled with AllowPartiallyTrustedCallers set.
+- UPDATED: The eStoreFront examples have been updated with minor modifications and have been tested to work on
+           the PayPal Sandbox.  See the posting at https://www.paypaldeveloper.com/pdn/board/message?board.id=payflow&thread.id=660
+           on how to setup your account to use the Sandbox for Express Checkout transactions.
+           This has also been tested on a UK account using GBP for the currency.  However, the default currency is USD in
+           the samples.
+- CHANGED: Version number from a 4-digit to 3-digit to keep with same schema of older SDKs.  For example, was 4021, now 421. 
+
+New Features:
+------------
+None
+
+Known Issues:
+------------
+None
+
+-------------------------------
+VERSION: 4.0.2.0
+UPDATED: 06/28/2007
+------------------------------------------------------
+NEW FEATURES/CHANGES/UPDATES
+-------------------------------------------------------
+- CHANGED: Removed the following legacy item from the PayflowConnectionData constructor:
+	   CerthPath.  Note: This does not have any impact on security or encryption of data.
+- CHANGED: Removed the following legacy items from the ClientInfo constructor:
+	   DeveloperCertificationId, DeveloperId and IntegrationCertificationId
+- CHANGED: DoRecurringAdd example to include additional comments on creating a profile.
+
+New Features:
+------------
+- Added new sample called DOSwipe for card-present transactions.  This card tender
+  is not compatible with Gateway accounts where PayPal is the bank including Website
+  Payments Pro UK accounts.
+
+Known Issues:
+------------
+None
+
+------------------------------------------------------
+VERSION: v1.2 (4.0.1.2)
+UPDATED: 06/05/2007
+------------------------------------------------------
+NEW FEATURES/CHANGES/UPDATES
+-------------------------------------------------------
+Changed:
+- Added AMEXID and BALAMT parameters to Response object (American Express CAPN transactions only).
+- Fixed missing response from the STATUS parameter on the Recurring Billing RecurResponse object.
+
+Known Issues:
+------------
+None
+
+-------------------------------
+VERSION: v1.1 (4.0.1.1)
+UPDATED: 05/09/2007
+------------------------------------------------------
+NEW FEATURES/CHANGES/UPDATES
+-------------------------------------------------------
+Changed:
+- CAPTURECOMPLETE is now part of CaptureTransaction object.
+- MERCHDESCR and MERCHSVC are now part of the Invoice object.
+- Fixed Result code 23 in the eStoreFrontCS sample while processing credit cards.
+- BUG: Fixed missing CURRENCY parameter when using CurrencyCode as part of the Amt (Invoice) object.
+  Updated samples to use 3-digit alpha code (USD, EUR, etc.) as described in the Developer's Guide.
+
+New Features:
+------------
+
+Known Issues:
+------------
+None
+
+-------------------------------
+VERSION: v1.0 (4.0.1.0) - First Release
+UPDATED: 04/10/2007
+------------------------------------------------------
+NEW FEATURES/CHANGES/UPDATES
+-------------------------------------------------------
+Changed:
+-	See Important Notices below regarding upgrading from v4.0.0.7 and v4.0.0.9.
+
+New Features:
+-	New Sample file, called DoSaleComplete for both VB and C#.  This is a fully commented sample that includes many, but not all fields and some business logic and practices you might consider.  It is suggested that you incorporate into your application best business practices for your business.
+-	New .config tag, <add key="CERT_OVERRIDE" value="ON"/>, this tag can be used if you receive result code -31, due to trust issues on a hosted server.  By turning on this over-ride, you bypass verification of host URL used.  For local hosting, trust level should be set to FULL.
+-	Added objects for Websites Payments Pro Payflow Edition (UK).
+o	CAPTURECOMPLETE, Invoice
+o	RECURRINGTYPE, Invoice
+-	Added display of PAYMENTHISTORY in DoRecurringInquiry sample.
+
+Updates (Fixes):
+-	Issue where you might receive "TrustFailure The underlying connection was closed: Could not establish trust relationship for the SSL/TLS secure channel."
+-	BUG: ADDOVERRIDE changed to correct variable ADDROVERRIDE. 
+-	BUG: P_AMOUNT changed to correct variable P_AMT.  This value is returned when PAYMENTHISTORY=Y while performing a Inquiry Recurring Billing type transaction.
+
+
+KNOWN ISSUES
+------------
+None
+
+IMPORTANT NOTICE for merchants upgrading from RC3 (v4.0.0.7) or earlier:
+
+1.	Due to the merger of PayPal and VeriSign Payment Services the Payflow Pro for .NET SDK have been
+     	re-branded due to copyright issues. You will be required to modify your code to reflect these changes.
+    	You can find the new naming below and in the API Docs.
+
+2.	The SubmitCommitTransaction and Client Duration objects have been removed. They are no longer required
+    	and are currently being simulated.  They will be removed in the near future and will cause older applications
+    	still using them to begin to fail.
+    
+IMPORTANT NOTICE for merchants upgrading from RC4 (v4.0.0.9) or earlier:
+
+1.	Moved CompanyName from the CustomerInfo class to the BillTo class.
+2.	Moved MerchantDescr and MechantSvc from the CustomerInfo class to the Invoice class.
+3.	Removed Payflow parameter CORPNAME.
+4.  	Host URL now requires a path be set.  For example: pilot-payflowpro.verisign.com/transaction.  This requirement
+    	will be removed in the future once true paypal.com URLs are created.
+    
+    	A result code of -1 will be returned if the path of “transaction” is not part of the Host Address.
+    

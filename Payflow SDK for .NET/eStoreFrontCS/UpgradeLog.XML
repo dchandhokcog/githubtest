@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="eStoreFrontCS">
+</Property><Property Name="Solution File" Value="E:\Damanpreet\Project\Payflow SDK for .NET\eStoreFrontCS\eStoreFrontCS.sln">
+</Property><Property Name="Date" Value="Wednesday, December 9, 2015">
+</Property><Property Name="Time" Value="15:48:47 PM">
+</Property></Properties><Event ErrorLevel="2" Project="E:\Damanpreet\Project\Payflow SDK for .NET\eStoreFrontCS\eStoreFrontCS.csproj" Source="eStoreFrontCS.csproj" Description="Could not find the server 'http://localhost/eStoreFrontCS/eStoreFrontCS.csproj' on the local machine. Creating a virtual directory is only supported on the local IIS server.">
+</Event><Event ErrorLevel="2" Project="" Source="eStoreFrontCS.csproj" Description="The operation could not be completed. The system cannot find the path specified. ">
+</Event></UpgradeLog>

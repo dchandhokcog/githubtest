@@ -1,0 +1,53 @@
+<!-- Classic ASP Client Integration Example using the Payflow Pro .NET SDK -->
+<!--                                                                       -->
+<!-- This file must be used in conjunction with ASPCOMExample.asp.         --> 
+<!-- Please copy both example files to a directory on your web server      -->
+<!-- the has script execute access.                                        -->
+<!--                                                                       -->
+<!-- You must install the Payflow_dotNET.dll before you can                -->
+<!-- successfully run this example.  See ReadMeCOM.txt.                    -->
+
+<html>
+
+<head>
+<title>Payflow Pro .NET SDK - Classic ASP Test</title>
+</head>
+
+<body>
+
+<form method="POST" action="ASPComExample.asp">
+  <div align="left"><table border="0" width="464" height="30">
+    <tr>
+      <td width="126" height="30">User:&nbsp;&nbsp;&nbsp; </td>
+      <td width="326" height="30"><input type="text" value="user" name="user" size="35"></td>
+    </tr>
+    <tr>
+      <td width="126" height="30">Vendor:&nbsp;&nbsp;&nbsp; </td>
+      <td width="326" height="30"><input type="text" value="vendor" name="vendor" size="35"></td>
+    </tr>
+    <tr>
+      <td width="126" height="30">Partner:&nbsp;&nbsp;&nbsp; </td>
+      <td width="326" height="30"><input type="text" value="partner" name="partner" size="35"></td>
+    </tr>
+    <tr>
+      <td width="126" height="30">Password:</td>
+      <td width="326" height="30"><input type="text" value="password" name="password" size="35"></td>
+    </tr>
+	 <tr>
+      <td width="126" height="30">Card Number:</td>
+      <td width="326" height="30"><input type="text" value="5105105105105100" name="cardNum"
+      size="35"></td>
+    </tr>
+    <tr>
+      <td width="126" height="30">Card Expiration: </td>
+      <td width="326" height="30"><input type="text" value="1209" name="cardExp" size="35"></td>
+    </tr>
+    <tr>
+      <td width="126" height="30">Amount:&nbsp; </td>
+      <td width="326" height="30"><input type="text" value="1.00" name="amount" size="35"></td>
+    </tr>
+  </table>
+  </div><p><input type="submit" value="Process" name="B1"></p>
+</form>
+</body>
+</html>
